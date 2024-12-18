@@ -120,7 +120,7 @@ class Virus {
         this.y = y;
 
         // 画像の読み込み
-        ImageIcon icon = new ImageIcon("C:/Users/cre/Downloads/Uirusukun.png"); // 画像のパスを指定
+        ImageIcon icon = new ImageIcon("C:\\Users\\cre\\git\nca_2024_java1_team_l\nca_2024_team_left\\bin\\ウイルスバスター仮\\Uirusukun.png"); // 画像のパスを指定
         this.virusImage = icon.getImage(); // 画像を取得
     }
 
