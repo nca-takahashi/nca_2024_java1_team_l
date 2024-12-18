@@ -95,7 +95,8 @@ class GamePanel extends JPanel implements ActionListener {
         // ゲームオーバーの処理
         if (playerLife <= 0 && showGameOver) {
             g.setColor(Color.RED);
-            g.setFont(new Font("Arial", Font.BOLD, 50));
+            // 日本語フォントを明示的に指定
+            g.setFont(new Font("MS ゴシック", Font.BOLD, 50)); // MS ゴシックに変更
             g.drawString("ゲームオーバー", getWidth() / 2 - 150, getHeight() / 2);
         }
     }
@@ -154,6 +155,3 @@ class Virus {
         return y;
     }
 }
-
-
-
