@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -119,9 +118,8 @@ class Virus {
         this.x = x;
         this.y = y;
 
-        // 画像の読み込み
-        ImageIcon icon = new ImageIcon("C:\\Users\\cre\\git\nca_2024_java1_team_l\nca_2024_team_left\\bin\\ウイルスバスター仮\\Uirusukun.png"); // 画像のパスを指定
-        this.virusImage = icon.getImage(); // 画像を取得
+        // ImageLoaderを使用して画像を読み込む
+        this.virusImage = ImageLoader.loadImage("Uirusukun.png");
     }
 
     // ウイルスを左に移動させるメソッド
