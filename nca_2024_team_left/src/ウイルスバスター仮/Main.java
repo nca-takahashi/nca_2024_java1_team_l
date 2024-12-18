@@ -9,21 +9,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Main {
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("ウイルスバスター");
-        GamePanel gamePanel = new GamePanel();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600); // ウィンドウのサイズ
-        frame.add(gamePanel);
-        frame.setVisible(true);
-        gamePanel.startGame();
-    }
 }
 
 class GamePanel extends JPanel implements ActionListener {
