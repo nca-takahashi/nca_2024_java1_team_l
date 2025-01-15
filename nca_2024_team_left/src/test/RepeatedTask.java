@@ -22,4 +22,3 @@ public class RepeatedTask {
         timer.scheduleAtFixedRate(task, 2000, 2000);
     }
 }
-

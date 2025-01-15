@@ -52,4 +52,3 @@ public class Ex {
 		frame.setVisible(true);
 	}
 }
-
