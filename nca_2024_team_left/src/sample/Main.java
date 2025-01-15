@@ -80,4 +80,3 @@ public class Main extends JPanel {
         frame.setVisible(true); // フレームを表示
     }
 }
-
