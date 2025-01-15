@@ -25,9 +25,11 @@ public class い {
 		button.setBounds(80,240,200,60);
 		JButton button2 = new JButton("次へ");
 		button2.setBounds(80,330,420,60);
+	
 		JButton button3 = new JButton("読み込み");
 		button3.setBounds(300,240,200,60);
-
+		
+		
 		button.addActionListener(e -> {
 			try {
 				URI uri = new URI("file:///D:/photoshop/web.html");
@@ -36,6 +38,7 @@ public class い {
 				ex.printStackTrace();
 			}
 		});
+		
 		button3.addActionListener(e ->{
 			if(textField.getText().equals("***")){
 				JFrame frame3 = new JFrame("正解");
@@ -57,6 +60,7 @@ public class い {
 				frame3.setVisible(true);
 			}
 		});
+		
 		button2.addActionListener(e ->{
 			JFrame frame2 = new JFrame("Hack2");
 			frame2.setLayout(null);
@@ -71,6 +75,7 @@ public class い {
 			button5.setBounds(300,240,200,60);
 			JButton button6 = new JButton("ログイン");
 			button6.setBounds(80,330,420,60);
+			
 			 button5.addActionListener(event -> {
                  // 入力されたパスワードをチェック
                  String enteredPassword = textField2.getText();
@@ -105,8 +110,11 @@ public class い {
 			frame2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 			frame2.setVisible(true);
 		});
-
-
+		
+		
+		
+		
+	
 		frame.add(label);
 		frame.add(textField);
 		frame.add(button);
@@ -114,8 +122,10 @@ public class い {
 		frame.add(button3);
 		frame.setVisible(true);
 	}
-
-
+	
+	
+	
+	
 }
  
  
