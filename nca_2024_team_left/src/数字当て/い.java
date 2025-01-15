@@ -23,7 +23,6 @@ public class い {
 		textField.setFont(new Font("Arial", Font.PLAIN, 20));
 		JButton button = new JButton("ヒント");
 		button.setBounds(80,240,200,60);
-	
 		JButton button2 = new JButton("次へ");
 		button2.setBounds(80,330,420,60);
 	
