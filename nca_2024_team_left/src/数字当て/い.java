@@ -66,18 +66,47 @@ public class い {
 			JFrame frame2 = new JFrame("Hack2");
 			frame2.setLayout(null);
 			JLabel label2 = new JLabel("パスワード:");
-			label2.setBounds(20,30,80,20);
+			label2.setBounds(80,130,380,40);
 			JTextField textField2 = new JTextField();
-			textField2.setBounds(100,30,150,20);
+			textField2.setBounds(180,130,280,40);
+			textField2.setFont(new Font("Arial", Font.PLAIN, 20));
 			JButton button4 = new JButton("ヒント");
-			button4.setBounds(60,90,80,30);
-			JButton button5 = new JButton("ログイン");
-			button5.setBounds(150,90,80,30);
+			button4.setBounds(80,240,200,60);
+			JButton button5 = new JButton("読み込み");
+			button5.setBounds(300,240,200,60);
+			JButton button6 = new JButton("ログイン");
+			button6.setBounds(80,330,420,60);
 			
+			 button5.addActionListener(event -> {
+                 // 入力されたパスワードをチェック
+                 String enteredPassword = textField2.getText();
+                 if (enteredPassword.equals("900")) {
+                     // 正解の場合
+                     JFrame correctFrame = new JFrame("正解");
+                     JLabel correctLabel = new JLabel("正解！");
+                     correctLabel.setBounds(100, 100, 200, 40);
+                     correctFrame.setLayout(null);
+                     correctFrame.add(correctLabel);
+                     correctFrame.setSize(300, 200);
+                     correctFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                     correctFrame.setVisible(true);
+                 } else {
+                     // 不正解の場合
+                     JFrame incorrectFrame = new JFrame("残念");
+                     JLabel incorrectLabel = new JLabel("残念！不正解！");
+                     incorrectLabel.setBounds(100, 100, 250, 40);
+                     incorrectFrame.setLayout(null);
+                     incorrectFrame.add(incorrectLabel);
+                     incorrectFrame.setSize(300, 200);
+                     incorrectFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                     incorrectFrame.setVisible(true);
+                 }
+             });
 			frame2.add(label2);
 			frame2.add(textField2);
-			frame2.add(button3);
 			frame2.add(button4);
+			frame2.add(button5);
+			frame2.add(button6);
 			frame2.setSize(600, 500);
 			frame2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 			frame2.setVisible(true);
