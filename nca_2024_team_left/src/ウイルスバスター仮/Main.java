@@ -119,7 +119,7 @@ class Virus {
         this.y = y;
 
         // ImageLoaderを使用して画像を読み込む
-        this.virusImage = ImageLoader.loadImage("Uirusukun.png");
+        this.virusImage = ImageLoader.loadImage("Ibukin.png");
     }
 
     // ウイルスを左に移動させるメソッド
