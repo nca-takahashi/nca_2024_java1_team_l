@@ -1,8 +1,5 @@
 package 感染を防ごう;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-
 public class Main {
 
 	public static void main(String[] args) {
@@ -16,7 +13,7 @@ public class Main {
 	}
 }
 
-public class RepeatedTaskExample {
+/*public class RepeatedTaskExample {
     public static void main(String[] args) {
         // ScheduledExecutorServiceのインスタンスを作成
         var scheduler = Executors.newScheduledThreadPool(1);
@@ -36,3 +33,4 @@ public class RepeatedTaskExample {
         }, 5, TimeUnit.SECONDS);
     }
 }
+*/
