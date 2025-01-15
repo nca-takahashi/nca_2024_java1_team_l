@@ -1,9 +1,6 @@
 package 感染を防ごう;
 
 import java.awt.BorderLayout;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -11,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Ex {
-	public static void tutorial() {
+	public void tutorial() {
 		JFrame frame = new JFrame("説明");
 		frame.setLayout(new BorderLayout());
 		
@@ -22,6 +19,9 @@ public class Ex {
 		frame.setVisible(true);
 	}
 	
+
+	
+/*	
     public static void main(String[] args) {
         // ScheduledExecutorService を作成（1スレッドのプール）
         ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
@@ -34,10 +34,9 @@ public class Ex {
         // 初回実行を0秒後、次回は2秒ごとに実行
         scheduler.scheduleAtFixedRate(task, 0, 2, TimeUnit.SECONDS);
     }
+*/
 	
-
-	public static void frame1() {
-		
+	public void frame1() {
 		String[] Data = {"AA","BB","CC","DD","EE","FF","GG","HH","JJ","AA","BB","CC","DD","EE","FF","GG"};
 		
 		JFrame frame = new JFrame("全体画面");
@@ -49,12 +48,12 @@ public class Ex {
 		JLabel test2 = new JLabel();
 		JLabel test3 = new JLabel();
 		
-		test1.setText(Data[0] + " " +Data [1] + " " + Data[2]);
-		test2.setText(Data[3] + " " +Data [4] + " " + Data[5]);
-		test3.setText(Data[6] + " " +Data [7] + " " + Data[8]);
-	
+		test1.setText(Data[0] + " " + Data [1] + " " + Data[2]);
+		test2.setText(Data[3] + " " + Data [4] + " " + Data[5]);
+		test3.setText(Data[6] + " " + Data [7] + " " + Data[8]);
 		
-		for(int i = 0; i<9; i++) {
+		
+		for(int i = 0; i<1; i++) {
 			test1.setText(Data[0+i] + " " + Data [1+i] + " " + Data[2+i]);
 			test2.setText(Data[3+i] + " " + Data [4+i] + " " + Data[5+i]);
 			test3.setText(Data[6+i] + " " + Data [7+i] + " " + Data[8+i]);
