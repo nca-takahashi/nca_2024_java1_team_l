@@ -12,8 +12,8 @@ public class Main {
 
 	}
 }
-/*
-public class RepeatedTaskExample {
+
+/*public class RepeatedTaskExample {
     public static void main(String[] args) {
         // ScheduledExecutorServiceのインスタンスを作成
         var scheduler = Executors.newScheduledThreadPool(1);
