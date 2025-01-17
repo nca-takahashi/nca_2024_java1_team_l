@@ -1,6 +1,7 @@
 package test;
 
 import java.awt.BorderLayout;
+import java.util.Random;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -20,9 +21,20 @@ public class Ex {
 	}
 	
 	public void frame1() {
-		String[] Data = {"AA","BB","CC","DD","EE","FF","GG","HH","JJ","AA","BB","CC","DD","EE","FF","GG"};
+		String[] Data = {"AA","BB","CC","DD","EE","FF","GG","HH","II","AA","BB","CC","DD","EE","FF","GG","HH","II"};
 		
-		JFrame frame = new JFrame("全体画面");
+		//問題用の乱数
+		Random rand = new Random();
+		int randInt = rand.nextInt(8);
+		int randY = rand.nextInt(9);
+		int randX = rand.nextInt(9);
+		
+		
+		System.out.println("randInt：" + randInt + "　randY：" + randY + "　randX：" + randX);
+		
+		
+		//BorderLayoutの中にBoxLayout
+		JFrame frame = new JFrame("表示画面");
 		frame.setLayout(new BorderLayout());
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -46,9 +58,11 @@ public class Ex {
 		panel.add(test2);
 		panel.add(test3);
 		
+		frame.add(new JLabel("[" + Data[randInt] + " " + Data[randInt+1] + " " + Data[randInt+2] + "]"),BorderLayout.NORTH);
 		frame.add(panel,BorderLayout.CENTER);
 		
 		frame.setSize(300, 200);
+		
 		frame.setVisible(true);
 	}
 }
