@@ -1,69 +1,146 @@
 package test;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Random;
 
-import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.Timer;
 
 public class Ex {
 	public void tutorial() {
 		JFrame frame = new JFrame("説明");
 		frame.setLayout(new BorderLayout());
-		
 		frame.add(new JLabel("テスト"), BorderLayout.CENTER);
-		
-		frame.setSize(300, 200);
+		frame.setSize(800, 600);
 		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		frame.setVisible(true);
 	}
 	
+	public static boolean checkClick = false;
 	public void frame1() {
-		String[] Data = {"AA","BB","CC","DD","EE","FF","GG","HH","II","AA","BB","CC","DD","EE","FF","GG","HH","II"};
+		String[] Data = {
+				"AA","BB","CC","DD","EE","FF","GG","HH","II","JJ","KK","LL","MM","NN","OO","PP","QQ","RR","SS","TT","UU","VV","WW","XX",
+				"AA","BB","CC","DD","EE","FF","GG","HH","II","JJ","KK","LL","MM","NN","OO","PP","QQ","RR","SS","TT","UU","VV","WW","XX"};		
+		JLabel[] labels = new JLabel[24];
 		
 		//問題用の乱数
 		Random rand = new Random();
-		int randInt = rand.nextInt(8);
-		int randY = rand.nextInt(9);
-		int randX = rand.nextInt(9);
+		int randInt = rand.nextInt(23);
+		int randArea = rand.nextInt(23);
+		
+		//一応表示
+		System.out.println("randInt：" + randInt + "　randArea：" + randArea);
 		
 		
-		System.out.println("randInt：" + randInt + "　randY：" + randY + "　randX：" + randX);
+		
+		JFrame frame = new JFrame("ゲーム");
+		frame.setLayout(null);
+		frame.setSize(800, 600);
+
+
+		
+		//タイトル
+		JLabel title = new JLabel("[" + Data[randInt] + " " + Data[randInt+1] + " " + Data[randInt+2] + " " + Data[randInt+3] + "]");
+		title.setBounds(330,100,200,30);
+		title.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		frame.add(title);
 		
 		
-		//BorderLayoutの中にBoxLayout
-		JFrame frame = new JFrame("表示画面");
-		frame.setLayout(new BorderLayout());
-		JPanel panel = new JPanel();
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		
-		JLabel test1 = new JLabel();
-		JLabel test2 = new JLabel();
-		JLabel test3 = new JLabel();
-		
-		test1.setText(Data[0] + " " + Data [1] + " " + Data[2]);
-		test2.setText(Data[3] + " " + Data [4] + " " + Data[5]);
-		test3.setText(Data[6] + " " + Data [7] + " " + Data[8]);
+		//透明ボタン
+		JButton button = new JButton();
+		button.setBounds(1000,1000,60,40);
+//		button.setOpaque(false);
+//		button.setContentAreaFilled(false);
+//		button.setBorderPainted(false);
+		frame.add(button);
 		
 		
-		for(int i = 0; i<1; i++) {
-			test1.setText(Data[0+i] + " " + Data [1+i] + " " + Data[2+i]);
-			test2.setText(Data[3+i] + " " + Data [4+i] + " " + Data[5+i]);
-			test3.setText(Data[6+i] + " " + Data [7+i] + " " + Data[8+i]);
-		}
-		
-		panel.add(test1);
-		panel.add(test2);
-		panel.add(test3);
-		
-		frame.add(new JLabel("[" + Data[randInt] + " " + Data[randInt+1] + " " + Data[randInt+2] + "]"),BorderLayout.NORTH);
-		frame.add(panel,BorderLayout.CENTER);
-		
-		frame.setSize(300, 200);
-		
+		//ラベルの作成(24個)
+		 for (int i = 0; i < 24; i++) {
+	            
+	        	if (i < 8) {
+	        		labels[i] = new JLabel(Data[i]);
+	                labels[i].setBounds(100+i*80,150,300,60);
+	                labels[i].setFont(new Font("Arial", Font.BOLD, 30));
+	                frame.add(labels[i]);
+	                
+	        	}else if (i < 16) {
+	        		labels[i] = new JLabel(Data[i]);
+	                labels[i].setBounds(100+(i-8)*80,250,300,60);
+	                labels[i].setFont(new Font("Arial", Font.BOLD, 30));
+	                frame.add(labels[i]);
+	                
+	        	}else {
+	        		labels[i] = new JLabel(Data[i]);
+	                labels[i].setBounds(100+(i-16)*80,350,300,60);
+	                labels[i].setFont(new Font("Arial", Font.BOLD, 30));
+	                frame.add(labels[i]);
+	        	}
+	        }
+		 
+		 
+		 button.addActionListener(new ActionListener() {
+	            @Override
+	            public void actionPerformed(ActionEvent e) {
+	                checkClick = true;
+	                System.out.println("ボタンがクリックされました！");
+	            }
+	        });
+		 
+	     //ラベルの文字を移動
+		 Timer timer = new Timer(2000, new ActionListener() {
+			 int areaIndex = randArea;  // ラベルのテキスト変更に使うインデックス
+			 int randIndex = randInt;
+			 
+			 @Override
+			 public void actionPerformed(ActionEvent e) {
+				 
+				 
+				 //ラベルのテキスト更新
+				 for (int i = 0; i < 24; i++) {
+					 labels[i].setText(Data[i + areaIndex]);
+				 }
+				 
+				 
+				 if (randIndex <9 && randIndex >=4) {
+					 button.setBounds(420-(randIndex-4)*80,360,60,40);
+
+				 }else if (areaIndex < 13 && areaIndex >= 8) {
+					 button.setBounds(100-areaIndex*80,260,60,40);
+					 
+				 }else if (areaIndex < 21 && areaIndex >= 16) {
+					 button.setBounds(100-areaIndex*80,360,60,40);
+					 
+				 }else {
+					 button.setBounds(1000,1000,60,40);
+				 }
+				 
+				 
+				 System.out.println("areaIndexは" + areaIndex);
+				 System.out.println("randIndexは" + randIndex);
+				 areaIndex = (areaIndex + 1) % 24;  // インデックスが24を超えたらリセット
+				 randIndex = (randIndex + 1) % 24;
+				 
+				 //クリックフラグが立っていたら処理を終了
+				 if (checkClick) {
+					 System.out.println("クリックされたので終了します");
+					 ((Timer) e.getSource()).stop();  // タイマーを停止
+					 }
+				 }
+	        });
+
+	        // タイマーを開始
+	        timer.start();
+	        
+		 
+		 
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 		frame.setVisible(true);
 	}
 }
-
