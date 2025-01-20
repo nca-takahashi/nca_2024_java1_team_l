@@ -26,7 +26,6 @@ public class あ {
         い instance = new い();
         instance.no1();
     }
-
     private static void playMusic(String filePath) {
         // 音楽を別スレッドで再生する
         new Thread(() -> {

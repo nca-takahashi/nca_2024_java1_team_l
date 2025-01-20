@@ -146,7 +146,7 @@ public class い {
 		});
 		
 		
-		
+	
 		
 	
 		frame.add(label);
