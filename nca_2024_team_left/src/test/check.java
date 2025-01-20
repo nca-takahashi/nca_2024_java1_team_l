@@ -13,7 +13,7 @@ public class check {
 
     public static void main(String[] args) {
         // 再生するWAVファイルのパスを指定
-        File soundFile = new File("C:\\Users\\cre\\git\\nca_2024_java1_team_l\\nca_2024_team_left\\bin\\test\\point.wav");
+        File soundFile = new File("C:\\Users\\cre\\git\\nca_2024_java1_team_l\\nca_2024_team_left\\src\\test\\point.wav");
 
         try {
             // オーディオファイルを読み込む
