@@ -1,4 +1,4 @@
-package test;
+package game_mojiate;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 
-public class Ex {
+public class Game {
 	public void tutorial() {
 		JFrame frame = new JFrame("説明");
 		frame.setLayout(new BorderLayout());

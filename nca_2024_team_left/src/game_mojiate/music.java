@@ -1,4 +1,4 @@
-package test;
+package game_mojiate;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,11 +9,11 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-public class check {
+public class music {
 
     public static void main(String[] args) {
         // 再生するWAVファイルのパスを指定
-        File soundFile = new File("C:\\Users\\cre\\git\\nca_2024_java1_team_l\\nca_2024_team_left\\src\\test\\point.wav");
+        File soundFile = new File("C:\\Users\\cre\\git\\nca_2024_java1_team_l\\nca_2024_team_left\\src\\game_mojiate\\point.wav");
 
         try {
             // オーディオファイルを読み込む
