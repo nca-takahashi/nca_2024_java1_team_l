@@ -10,9 +10,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
  
 public class い {
+	
+
 	public void no1() {
+		
 		JFrame frame = new JFrame("Hack");
 		frame.setSize(600,500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
