@@ -22,6 +22,7 @@ public class Ex {
 	}
 	
 	public static boolean checkClick = false;
+	public static boolean Time = false;
 	public void frame1() {
 		String[] Data = {
 				"AA","BB","CC","DD","EE","FF","GG","HH","II","JJ","KK","LL","MM","NN","OO","PP","QQ","RR","SS","TT","UU","VV","WW","XX",
@@ -31,18 +32,16 @@ public class Ex {
 		//問題用の乱数
 		Random rand = new Random();
 		int randInt = rand.nextInt(23);
-		int randArea = rand.nextInt(23);
+		int Area = 1;
+		int Iimer = 0;
 		
-		//一応表示
-		System.out.println("randInt：" + randInt + "　randArea：" + randArea);
-		
+		System.out.println("randInt:" + randInt);
 		
 		
 		JFrame frame = new JFrame("ゲーム");
 		frame.setLayout(null);
 		frame.setSize(800, 600);
-
-
+		
 		
 		//タイトル
 		JLabel title = new JLabel("[" + Data[randInt] + " " + Data[randInt+1] + " " + Data[randInt+2] + " " + Data[randInt+3] + "]");
@@ -88,13 +87,14 @@ public class Ex {
 	            @Override
 	            public void actionPerformed(ActionEvent e) {
 	                checkClick = true;
-	                System.out.println("ボタンがクリックされました！");
+//	                System.out.println("ボタンがクリックされました！");
 	            }
 	        });
 		 
+		 
 	     //ラベルの文字を移動
 		 Timer timer = new Timer(2000, new ActionListener() {
-			 int areaIndex = randArea;  // ラベルのテキスト変更に使うインデックス
+			 int areaIndex = Area;  // ラベルのテキスト変更に使うインデックス
 			 int randIndex = randInt;
 			 
 			 @Override
@@ -107,36 +107,45 @@ public class Ex {
 				 }
 				 
 				 
-				 if (randIndex <9 && randIndex >=4) {
-					 button.setBounds(420-(randIndex-4)*80,360,60,40);
-
-				 }else if (areaIndex < 13 && areaIndex >= 8) {
-					 button.setBounds(100-areaIndex*80,260,60,40);
+				 areaIndex = (areaIndex + 1) % 24;
+				 
+				 randIndex = randIndex-1;
+				 if (randIndex < 0) {
+					 randIndex = 23;
+				 }
+				 
+				 
+				 if (randIndex >= 16 && randIndex < 21) {
+					 button.setBounds(660-(23-randIndex)*80,360,60,40);
 					 
-				 }else if (areaIndex < 21 && areaIndex >= 16) {
-					 button.setBounds(100-areaIndex*80,360,60,40);
+				 }else if (randIndex >= 8 && randIndex < 13) {
+					 button.setBounds(660-(15-randIndex)*80,260,60,40);
+					 
+				 }else if (randIndex >= 0 && randIndex < 5) {
+					 button.setBounds(660-(7-randIndex)*80,160,60,40);
 					 
 				 }else {
 					 button.setBounds(1000,1000,60,40);
 				 }
 				 
-				 
-				 System.out.println("areaIndexは" + areaIndex);
-				 System.out.println("randIndexは" + randIndex);
-				 areaIndex = (areaIndex + 1) % 24;  // インデックスが24を超えたらリセット
-				 randIndex = (randIndex + 1) % 24;
+//				 System.out.println("areaIndexは" + areaIndex);
+//				 System.out.println("randIndexは" + randIndex);
 				 
 				 //クリックフラグが立っていたら処理を終了
 				 if (checkClick) {
-					 System.out.println("クリックされたので終了します");
-					 ((Timer) e.getSource()).stop();  // タイマーを停止
+//					 System.out.println("クリックされたので終了します");
+					 ((Timer) e.getSource()).stop();
+					 title.setText("ゲームクリア！！");
+					 title.setBounds(330,100,200,30);
+					 title.setFont(new Font("", Font.PLAIN, 20));
 					 }
+//				 }else if (boolean test.Ex.checkClick) {
+					 
 				 }
 	        });
-
-	        // タイマーを開始
-	        timer.start();
-	        
+		 
+		 
+		 timer.start();
 		 
 		 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
