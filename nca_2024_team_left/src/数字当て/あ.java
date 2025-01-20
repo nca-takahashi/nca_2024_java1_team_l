@@ -14,52 +14,42 @@ public class あ {
         
         い ex = new い();
         
-        // 音楽ファイルのパス
-        String filePath = "D:\\track02 (online-audio-converter.com).wav";
-        
-        // 音楽を再生
-        playMusic(filePath);
         
         
         ex.no1();
         
         い instance = new い();
         instance.no1();
-    }
-    private static void playMusic(String filePath) {
-        // 音楽を別スレッドで再生する
-        new Thread(() -> {
-            try {
-                // 音楽ファイルを指定
-                File soundFile = new File(filePath);
-                
-                // ファイルの存在チェック
-                if (!soundFile.exists()) {
-                    System.out.println("指定されたファイルが見つかりません。");
-                    return;
-                }
+    
+    File soundFile = new File("C:\\Users\\cre\\git\\nca_2024_java1_team_l\\nca_2024_team_left\\src\\test\\point.wav");
 
-                // AudioInputStreamを取得
-                AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
-                
-                // Clipオブジェクトを取得
-                Clip clip = AudioSystem.getClip();
-                clip.open(audioIn);
-                
-                // 音楽を再生
-                clip.start();
-                
-                // 音楽が終了するまで待機
-                while (clip.isRunning()) {
-                    Thread.sleep(100);  // 100msごとに待機
-                }
-                
-                // 音楽再生後、リソースを解放
-                clip.close();
-            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException | InterruptedException e) {
-                e.printStackTrace();
-                System.out.println("音楽の再生中にエラーが発生しました: " + e.getMessage());
-            }
-        }).start();
+    try {
+        // オーディオファイルを読み込む
+        AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
+
+        // オーディオフォーマットとデータラインの取得
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioIn);
+
+        // 再生開始
+        clip.start();
+
+        // 再生が終了するまで待機
+        System.out.println("音声を再生中...");
+        while (!clip.isRunning()) {
+            Thread.sleep(100);
+        }
+        while (clip.isRunning()) {
+            Thread.sleep(100);
+        }
+
+        // 再生完了後にリソースを解放
+        clip.close();
+        audioIn.close();
+        System.out.println("再生完了");
+
+    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException | InterruptedException e) {
+        e.printStackTrace();
     }
+}
 }
