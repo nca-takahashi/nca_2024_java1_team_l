@@ -1,10 +1,16 @@
 package r;
 
 import java.awt.Color;
+import java.awt.Desktop;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 
 public class Main {
@@ -40,6 +46,24 @@ public class Main {
 		
 		
 		frame.getContentPane().setBackground(Color.BLACK);
+		 btn.addActionListener(new ActionListener() {
+	            @Override
+	            public void actionPerformed(ActionEvent e) {
+	                // ボタンが押されたときにMP4ファイルを開く
+	                try {
+	                    File videoFile = new File("D:\\Java\\java.mp4");
+	                    if (videoFile.exists()) {
+	                        // デフォルトのアプリケーションでファイルを開く
+	                        Desktop.getDesktop().open(videoFile);
+	                    } else {
+	                        JOptionPane.showMessageDialog(frame, "指定された動画ファイルが見つかりません。");
+	                    }
+	                } catch (IOException ex) {
+	                    ex.printStackTrace();
+	                    JOptionPane.showMessageDialog(frame, "ファイルを開けませんでした。エラー: " + ex.getMessage());
+	                }
+	            }
+	        });
 		
 		
 		
