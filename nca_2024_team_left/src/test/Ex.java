@@ -23,6 +23,7 @@ public class Ex {
 	
 	public static boolean checkClick = false;
 	public static boolean Time = false;
+	public static int Timer = 32;
 	public void frame1() {
 		String[] Data = {
 				"AA","BB","CC","DD","EE","FF","GG","HH","II","JJ","KK","LL","MM","NN","OO","PP","QQ","RR","SS","TT","UU","VV","WW","XX",
@@ -33,9 +34,9 @@ public class Ex {
 		Random rand = new Random();
 		int randInt = rand.nextInt(23);
 		int Area = 1;
-		int Iimer = 0;
 		
-		System.out.println("randInt:" + randInt);
+		
+//		System.out.println("randInt:" + randInt);
 		
 		
 		JFrame frame = new JFrame("ゲーム");
@@ -50,12 +51,19 @@ public class Ex {
 		frame.add(title);
 		
 		
+		//残り時間
+		JLabel timerLabel = new JLabel();
+		timerLabel.setBounds(335,50,200,30);
+		timerLabel.setFont(new Font("", Font.PLAIN,20));
+		frame.add(timerLabel);
+		
+		
 		//透明ボタン
 		JButton button = new JButton();
 		button.setBounds(1000,1000,60,40);
-//		button.setOpaque(false);
-//		button.setContentAreaFilled(false);
-//		button.setBorderPainted(false);
+		button.setOpaque(false);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
 		frame.add(button);
 		
 		
@@ -101,18 +109,30 @@ public class Ex {
 			 public void actionPerformed(ActionEvent e) {
 				 
 				 
-				 //ラベルのテキスト更新
+				 
+				
+					 //ラベルのテキスト更新
 				 for (int i = 0; i < 24; i++) {
 					 labels[i].setText(Data[i + areaIndex]);
 				 }
 				 
 				 
+				 Timer = Timer - 2;
 				 areaIndex = (areaIndex + 1) % 24;
-				 
 				 randIndex = randIndex-1;
 				 if (randIndex < 0) {
 					 randIndex = 23;
 				 }
+				 
+				 
+				 if (Timer <= 0) {
+					 Time = true;
+				 }
+				 
+				 if(Timer % 10 == 0) {
+					 timerLabel.setText("残り時間：" + Timer);
+				 }
+				 
 				 
 				 
 				 if (randIndex >= 16 && randIndex < 21) {
@@ -133,14 +153,16 @@ public class Ex {
 				 
 				 //クリックフラグが立っていたら処理を終了
 				 if (checkClick) {
-//					 System.out.println("クリックされたので終了します");
-					 ((Timer) e.getSource()).stop();
-					 title.setText("ゲームクリア！！");
-					 title.setBounds(330,100,200,30);
-					 title.setFont(new Font("", Font.PLAIN, 20));
+					 	((Timer) e.getSource()).stop();
+					 	title.setText("ゲームクリア！！");
+					 	title.setBounds(330,100,200,30);
+					 	title.setFont(new Font("", Font.PLAIN, 20));
+					 }else if (Time) {
+						 ((Timer) e.getSource()).stop();
+						 title.setText("ゲームオーバー");
+						 title.setBounds(330,100,200,30);
+						 title.setFont(new Font("", Font.PLAIN, 20));
 					 }
-//				 }else if (boolean test.Ex.checkClick) {
-					 
 				 }
 	        });
 		 
