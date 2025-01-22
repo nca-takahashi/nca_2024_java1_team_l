@@ -1,4 +1,4 @@
-package game_mojiate;
+package game_codeate;
 
 import java.io.File;
 import java.io.FileInputStream;

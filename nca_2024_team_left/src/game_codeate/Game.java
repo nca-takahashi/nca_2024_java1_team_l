@@ -1,4 +1,4 @@
-package game_mojiate;
+package game_codeate;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
