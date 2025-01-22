@@ -11,10 +11,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import r.Main;
 		public class GAMESTART {
 
 		    public static void main(String[] args) {
 		        // JFrame（ウィンドウ）を作成
+		    	Main main =new Main();
 		        JFrame frame = new JFrame("ゲーム開始");
 		        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		        frame.setSize(800, 600); // ウィンドウのサイズ
@@ -54,8 +56,21 @@ import javax.swing.JPanel;
 
 		        // フレームにパネルを追加
 		        frame.add(panel);
-		        frame.setVisible(true); // ウィンドウを表示
+		       
 		    }
+
+			public static JFrame JFrame(JFrame frame) {
+				// TODO 自動生成されたメソッド・スタブ
+				 frame.setVisible(true); // ウィンドウを表示
+				return null;
+			}
+		}
 		
-	}
+			
+
+		    		
+			
+			
+		
+	
 
