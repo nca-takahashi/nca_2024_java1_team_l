@@ -20,7 +20,7 @@ public class あ {
         い instance = new い();
         instance.no1();
     
-    File soundFile = new File("//172.20.34.11/students/_JAVA高橋/TeamLへ　ここに必要なファイルを入れておいて/java ending.mp4");
+    File soundFile = new File("//172.20.34.11/students/_JAVA高橋/HTML/i_5min.wav");
 
 
     try {
