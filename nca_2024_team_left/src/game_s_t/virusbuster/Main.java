@@ -16,6 +16,8 @@ import javax.swing.Timer;
 public class Main {
 }
 
+
+
 class GamePanel extends JPanel implements ActionListener {
     private int playerLife = 3; // プレイヤーのライフ
     private ArrayList<Virus> viruses; // ウイルスのリスト

@@ -19,6 +19,7 @@ public class ImageLoader {
         }
     }
 
+    
     public static void main(String[] args) {
         JFrame frame = new JFrame("ウイルスバスター");
         GamePanel gamePanel = new GamePanel();

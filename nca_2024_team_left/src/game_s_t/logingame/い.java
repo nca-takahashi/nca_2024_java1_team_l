@@ -14,7 +14,6 @@ import javax.swing.JTextField;
 
  
 public class い {
-	
 
 	public void no1() {
 		

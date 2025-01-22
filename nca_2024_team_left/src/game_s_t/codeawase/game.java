@@ -21,7 +21,6 @@ public class game {
 		frame.setVisible(true);
 	}
 	
-	
 	public interface GameClearListener {
         void onGameClear();   // ゲームクリア時に呼ばれる
         void onGameOver();    // ゲームオーバー時に呼ばれる
@@ -100,6 +99,8 @@ public class game {
 	                frame.add(labels[i]);
 	        	}
 	        }
+		 
+		 
 		 
 		 
 		 button.addActionListener(new ActionListener() {

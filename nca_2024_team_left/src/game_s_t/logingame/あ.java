@@ -15,7 +15,6 @@ public class あ {
         い ex = new い();
         
         
-        
         ex.no1();
         
         い instance = new い();

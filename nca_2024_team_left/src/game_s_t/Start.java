@@ -98,7 +98,6 @@ public class Start {
 		 
 		 
 		 
-		 
 		//3番目のゲーム
 		 い ex = new い();
 		 ex.no1();
