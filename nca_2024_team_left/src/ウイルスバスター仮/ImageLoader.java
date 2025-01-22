@@ -25,7 +25,9 @@ public class ImageLoader {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600); // ウィンドウのサイズ
         frame.add(gamePanel);
+        
         frame.setVisible(true);
         gamePanel.startGame();
     }
+    
 }

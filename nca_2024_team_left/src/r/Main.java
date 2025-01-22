@@ -1,25 +1,22 @@
 package r;
 
 import java.awt.Color;
-import java.awt.Frame;
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.Timer;
-
-import ウイルスバスター仮.GAMESTART;
-
 
 
 public class Main {
-	private static int seconds = 0;
 	public static void main(String[] args) {
 		
 		
@@ -63,25 +60,6 @@ public class Main {
 	                        Desktop.getDesktop().open(videoFile);
 	                        frame.setVisible(false);
 	                        
-	                     // 数秒後に画面遷移を行う
-	       		         Timer timer = new Timer(1000, new ActionListener() {
-	       		             @Override
-	       		             public void actionPerformed(ActionEvent e) {
-	       		            	 seconds++; // 1秒カウントアップ
-	       		            	 int remainingSeconds = seconds % 60;
-	       		            	 if ( remainingSeconds == 47) {
-	       		            	// 数秒後に新しい画面に遷移
-	       		            		 s
-	       		            	 }
-	       		             }
-
-							
-	       		         });
-	       		         timer.setRepeats(false); // 1回だけ実行するように設定
-	       		         timer.start();
-	       		 		
-	       		 	
-	                        
 	                    } else {
 	                        JOptionPane.showMessageDialog(frame, "指定された動画ファイルが見つかりません。");
 	                    }
@@ -95,14 +73,25 @@ public class Main {
 					
 				}
 	        });
-		    
-		         
-	     
-	    
-	 		
 	 	}
-}
 
+	public  void main1(){
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Timer timer = new Timer(false);
+		TimerTask task = new TimerTask() {
+
+			@Override
+			public void run() {
+				Ex test = new Ex();
+				test.test();
+				
+				
+			}
+		};
+		timer.schedule(task, 1000);
+	}
+
+}
 		
 
 
