@@ -52,7 +52,7 @@ public class Main2 {
 			            public void actionPerformed(ActionEvent e) {
 			                // ボタンが押されたときにMP4ファイルを開く
 			                try {
-			                    File videoFile = new File("//172.20.34.11/students/_JAVA高橋/java.mp4");
+			                    File videoFile = new File("//172.20.34.11/students/_JAVA高橋/TeamLへ　ここに必要なファイルを入れておいて/java.mp4");
 			                    if (videoFile.exists()) {
 			                    	
 			                        // デフォルトのアプリケーションでファイルを開く
