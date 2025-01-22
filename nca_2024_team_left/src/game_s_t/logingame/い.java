@@ -93,7 +93,7 @@ public class い {
 			
 			button4.addActionListener(e1 -> {
 				try {
-					 File htmlFile = new File("E:/webサイト.html");
+					 File htmlFile = new File("//172.20.34.11/students/_JAVA高橋/HTML/webサイト.html");
 					
 					if (htmlFile.exists()) {
 					    Desktop.getDesktop().browse(htmlFile.toURI());
@@ -112,7 +112,7 @@ public class い {
                      // 正解の場合
                 	 try {
                 		    
-                		    File videoFile = new File("file://///172.20.34.11/students/_JAVA%E9%AB%98%E6%A9%8B/TeamL%E3%81%B8%E3%80%80%E3%81%93%E3%81%93%E3%81%AB%E5%BF%85%E8%A6%81%E3%81%AA%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E5%85%A5%E3%82%8C%E3%81%A6%E3%81%8A%E3%81%84%E3%81%A6/web%E3%82%B5%E3%82%A4%E3%83%88.html");
+                		    File videoFile = new File("//172.20.34.11/students/_JAVA高橋/TeamLへ　ここに必要なファイルを入れておいて/java ending.mp4");
                 		    
                 		    
                 		    if (videoFile.exists()) {
