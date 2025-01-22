@@ -106,7 +106,7 @@ public class い {
                      // 正解の場合
                 	 try {
                 		    
-                		    File videoFile = new File("D:\\Java\\java ending.mp4");
+                		    File videoFile = new File("\"\\\\172.20.34.11\\students\\_JAVA高橋\\java ending.mp4\"");
                 		    
                 		    
                 		    if (videoFile.exists()) {
