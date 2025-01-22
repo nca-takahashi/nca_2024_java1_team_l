@@ -35,7 +35,7 @@ class GamePanel extends JPanel implements ActionListener {
         this.countdownTimer = new Timer(1000, e -> updateTime()); // 1秒ごとに残り時間を更新
         setBackground(Color.BLACK); // 背景色
 
-        // マウスクリックイベントをリスンする
+        // マウスクリック
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
