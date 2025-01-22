@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -19,22 +21,59 @@ class GamePanel extends JPanel implements ActionListener {
     private ArrayList<Virus> viruses; // ウイルスのリスト
     private Timer gameTimer; // ゲームのタイマー
     private Timer blinkTimer; // ゲームオーバー点滅用タイマー
+    private Timer countdownTimer; // 30秒タイマー
     private boolean showGameOver = false; // ゲームオーバー表示の制御
+    private boolean showClear = false; // クリア表示の制御
     private int score = 0; // スコア（オプション）
+    private int timeLeft = 30; // 残り時間（秒）
+    private boolean gamePaused = false; // ゲームが一時停止しているかどうかを管理
 
     public GamePanel() {
         this.viruses = new ArrayList<>();
         this.gameTimer = new Timer(20, this); // ゲームの更新タイマー（20ミリ秒ごと）
         this.blinkTimer = new Timer(500, e -> toggleGameOver()); // 500ミリ秒ごとに点滅
+        this.countdownTimer = new Timer(1000, e -> updateTime()); // 1秒ごとに残り時間を更新
         setBackground(Color.BLACK); // 背景色
+
+        // マウスクリックイベントをリスンする
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                // ゲームが一時停止していない場合のみウイルスを削除
+                if (!showGameOver && !showClear && !gamePaused) {
+                    removeVirusAt(e.getX(), e.getY());
+                }
+            }
+        });
     }
 
     public void startGame() {
         gameTimer.start(); // ゲームのタイマーを開始
+        countdownTimer.start(); // 30秒カウントダウンを開始
+        gamePaused = false; // ゲームが開始されたら一時停止フラグをリセット
+        showClear = false; // ゲーム開始時にはクリア表示をリセット
+        showGameOver = false; // ゲームオーバー表示をリセット
+        timeLeft = 30; // タイマーを初期化
+        playerLife = 3; // ライフを初期化
+        viruses.clear(); // ウイルスリストを初期化
+    }
+
+    private void updateTime() {
+        if (timeLeft > 0 && playerLife > 0) {
+            timeLeft--; // 残り時間を減らす
+        } else if (timeLeft == 0) {
+            // 残り時間が0になった時点でクリアチェックを行う
+            checkGameOver();
+        }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        // ゲームオーバーまたはクリア時には何もしない
+        if (showGameOver || showClear || gamePaused) {
+            return;
+        }
+
         // 新しいウイルスを一定間隔で生成
         if (Math.random() < 0.07) { // 7%の確率でウイルスを生成
             // ウイルスが重ならないように位置をランダムで選ぶ
@@ -58,10 +97,29 @@ class GamePanel extends JPanel implements ActionListener {
         // ゲームオーバー処理
         if (playerLife <= 0 && !blinkTimer.isRunning()) {
             blinkTimer.start(); // ゲームオーバー点滅タイマーを開始
+            checkGameOver(); // ゲームオーバー判定
         }
 
         // 画面が更新されるときに再描画
         repaint();
+    }
+
+    private void checkGameOver() {
+        // 30秒経過後、ライフが0ならゲームオーバー、それ以外はクリア
+        if (timeLeft == 0) {
+            if (playerLife <= 0) {
+                showGameOver = true; // ゲームオーバー表示を有効にする
+                countdownTimer.stop(); // カウントダウンタイマーを停止
+                gameTimer.stop(); // ゲームのタイマーも停止
+                gamePaused = true; // ゲーム停止状態にする
+            } else {
+                showClear = true; // クリア表示を有効にする
+                countdownTimer.stop(); // カウントダウンタイマーを停止
+                gameTimer.stop(); // ゲームのタイマーも停止
+                gamePaused = true; // ゲーム停止状態にする
+            }
+            repaint(); // 画面の再描画を強制
+        }
     }
 
     @Override
@@ -75,6 +133,9 @@ class GamePanel extends JPanel implements ActionListener {
         // スコアの表示（オプション）
         g.drawString("スコア: " + score, 20, 40);
 
+        // 残り時間の表示
+        g.drawString("残り時間: " + timeLeft + "秒", getWidth() - 120, 20);
+
         // ウイルスの描画
         for (Virus virus : viruses) {
             virus.draw(g);
@@ -86,6 +147,13 @@ class GamePanel extends JPanel implements ActionListener {
             // 日本語フォントを明示的に指定
             g.setFont(new Font("MS ゴシック", Font.BOLD, 50)); // MS ゴシックに変更
             g.drawString("ゲームオーバー", getWidth() / 2 - 150, getHeight() / 2);
+        }
+
+        // クリアの処理
+        if (showClear) {
+            g.setColor(Color.GREEN);
+            g.setFont(new Font("MS ゴシック", Font.BOLD, 50)); // MS ゴシックに変更
+            g.drawString("クリア!", getWidth() / 2 - 100, getHeight() / 2);
         }
     }
 
@@ -103,6 +171,20 @@ class GamePanel extends JPanel implements ActionListener {
             }
         }
         return false; // 重なっていない
+    }
+
+    // マウスクリックでウイルスを削除
+    private void removeVirusAt(int mouseX, int mouseY) {
+        for (int i = 0; i < viruses.size(); i++) {
+            Virus virus = viruses.get(i);
+            // クリック位置がウイルスの範囲内にあればそのウイルスを削除
+            if (mouseX >= virus.getX() && mouseX <= virus.getX() + Virus.WIDTH &&
+                mouseY >= virus.getY() && mouseY <= virus.getY() + Virus.HEIGHT) {
+                viruses.remove(i);
+                score += 10; // ウイルスを倒したらスコア加算
+                break; // 1つのウイルスを削除したらループを終了
+            }
+        }
     }
 }
 
@@ -142,3 +224,4 @@ class Virus {
         return y;
     }
 }
+
