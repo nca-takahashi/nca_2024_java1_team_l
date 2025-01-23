@@ -1,4 +1,4 @@
-package sample;
+package virusbuster.sample;
 
 import java.awt.BorderLayout;
 import java.awt.Point;

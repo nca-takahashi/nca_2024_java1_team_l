@@ -1,4 +1,4 @@
-package sample;
+package virusbuster.sample;
 
 import java.awt.Color;
 import java.awt.Graphics;
