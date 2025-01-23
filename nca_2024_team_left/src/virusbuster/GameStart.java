@@ -12,70 +12,113 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-
+/**
+ * ゲームを開始するためのクラス。
+ * ウィンドウを表示し、スタートボタンを押すと動画を再生し、その後ゲームを開始します。
+ */
 public class GameStart {
 
+	/**
+	 * メインメソッド。プログラムのエントリーポイント。
+	 * ウィンドウを作成し、スタートボタンを設定します。
+	 * 
+	 * @param args コマンドライン引数
+	 */
 	public static void main(String[] args) {
 
-		// TODO 自動生成されたメソッド・スタブ
+		// 新しいJFrameを作成
 		JFrame frame = new JFrame("");
+		// ウィンドウを閉じたときにプログラムを終了するように設定
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// ウィンドウのサイズを設定
 		frame.setSize(800, 600);
+		// ウィンドウを画面の中央に表示
+		frame.setLocationRelativeTo(null);
 
+		// レイアウトをnullに設定
 		frame.setLayout(null);
+		// ウィンドウを表示
 		frame.setVisible(true);
 
+		// ラベルを作成し、テキストを設定
 		JLabel label = new JLabel("Virus Buster");
 
+		// ラベルの位置とサイズを設定
 		label.setBounds(130, 100, 600, 100);
+		// ラベルのフォントを設定
 		label.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 100));
+		// カスタムカラーを作成
 		Color p = new Color(128, 0, 171);
+		// ラベルの文字色を設定
 		label.setForeground(p);
+		// ラベルをフレームに追加
 		frame.add(label);
 
+		// ボタンを作成し、テキストを設定
 		JButton btn = new JButton("START");
+		// ボタンのフォントを設定
 		btn.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 50));
+		// ボタンの位置とサイズを設定
 		btn.setBounds(280, 350, 250, 80);
+		// ボタンの文字色を設定
 		btn.setForeground(Color.BLUE);
+		// ボタンの背景色を設定
 		btn.setBackground(Color.WHITE);
 
+		// ボタンをフレームに追加
 		frame.add(btn);
 
+		// フレームの背景色を設定
 		frame.getContentPane().setBackground(Color.BLACK);
 
+		// ボタンにアクションリスナーを追加
 		btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// ボタンが押されたときにMP4ファイルを開く
 				try {
-					//File videoFile = new File("//172.20.34.11/students/_JAVA高橋/HTML/java.mp4");
+					// 動画ファイルのパスを指定
+					// File videoFile = new File("//172.20.34.11/students/_JAVA高橋/HTML/java.mp4");
 					File videoFile = new File("C:/temp/java/java.mp4");
+					// ファイルが存在するか確認
 					if (videoFile.exists()) {
 						// デフォルトのアプリケーションでファイルを開く
 						Desktop.getDesktop().open(videoFile);
+						// 現在のフレームを非表示にする
 						frame.setVisible(false);
 						try {
-							//Thread.sleep(50000); // 50秒待機
-							Thread.sleep(1);
+							// 一時停止（実際には1ミリ秒）
+							Thread.sleep(50000);
+							// 新しいJFrameを作成
 							JFrame frame = new JFrame("ウイルスバスター");
+							// ウィンドウのサイズを設定
+							frame.setSize(800, 600);
+							// ウィンドウを画面の中央に表示
+							frame.setLocationRelativeTo(null);
+							// ゲームパネルを作成
 							GamePanel gamePanel = new GamePanel();
+							// ウィンドウを閉じたときにプログラムを終了するように設定
 							frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-							frame.setSize(800, 600); // ウィンドウのサイズ
+							// ゲームパネルをフレームに追加
 							frame.add(gamePanel);
+							// ウィンドウを表示
 							frame.setVisible(true);
+							// ゲームを開始
 							gamePanel.startGame();
 						} catch (InterruptedException e1) {
+							// 例外が発生した場合のスタックトレースを出力
 							e1.printStackTrace();
 						}
 					} else {
+						// ファイルが見つからない場合のメッセージを表示
 						JOptionPane.showMessageDialog(frame, "指定された動画ファイルが見つかりません。");
 					}
 				} catch (IOException ex) {
+					// 例外が発生した場合のスタックトレースを出力
 					ex.printStackTrace();
+					// ファイルを開けない場合のエラーメッセージを表示
 					JOptionPane.showMessageDialog(frame, "ファイルを開けませんでした。エラー: " + ex.getMessage());
-
 				}
-
 			}
 		});
 	}
