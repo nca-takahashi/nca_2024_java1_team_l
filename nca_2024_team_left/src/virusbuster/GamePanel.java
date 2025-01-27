@@ -244,7 +244,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
     
     
-	private void showClearWindow() {
+	private void showGameOverWindow() {
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
