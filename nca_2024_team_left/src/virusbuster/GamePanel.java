@@ -26,6 +26,8 @@ import javax.swing.SwingUtilities;
 // タイマーを扱うためのクラスをインポート
 import javax.swing.Timer;
 
+import game_s_t.Start;
+
 /**
  * ゲームのメインパネルを表すクラス。
  * ゲームのロジックと描画を管理します。
@@ -239,9 +241,11 @@ public class GamePanel extends JPanel implements ActionListener {
             }
             repaint(); // 画面の再描画を強制
         }
+
     
-    private void showGameOverWindow() {
     
+	private void showClearWindow() {
+
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -317,6 +321,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
                 // ラベルをフレームに追加
                 frame.add(label);
+                
 
                 // ボタンを作成して設定
                 JButton btn = new JButton("START");
@@ -325,13 +330,18 @@ public class GamePanel extends JPanel implements ActionListener {
                 btn.setForeground(Color.BLUE);
                 btn.setBackground(Color.WHITE);
 
-                // ボタンのアクションリスナーを追加
                 btn.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        startGame();  // 新しいゲームを開始
-                        showGameOver = false;
-                        frame.dispose();  // ゲームクリアウィンドウを閉じる
+
+                        // ゲーム開始処理（新しいゲームを開始）
+                        // まず、現在のゲームウィンドウを閉じる
+                        frame.dispose(); 
+                        // ゲームクリアウィンドウを閉じる
+
+                        // 次のゲームに移動
+                        
+                        Start.main(new String[]{}); // `Start`クラスの`main`メソッドを呼び出す
                     }
                 });
 
@@ -346,7 +356,8 @@ public class GamePanel extends JPanel implements ActionListener {
             }
         });
     }
-
+	
+	
     /**
      * ゲームオーバー表示を切り替えるメソッド。
      * 表示をトグルし、再描画を行います。
@@ -390,5 +401,6 @@ public class GamePanel extends JPanel implements ActionListener {
         }
     } 
     
+ 
     
 }
