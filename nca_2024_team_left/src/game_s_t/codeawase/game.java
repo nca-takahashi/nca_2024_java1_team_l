@@ -21,19 +21,28 @@ public class game {
 		frame.setVisible(true);
 	}
 	
-	public interface GameClearListener {
-        void onGameClear();   // ゲームクリア時に呼ばれる
-        void onGameOver();    // ゲームオーバー時に呼ばれる
-    }
 	
 	public static boolean checkClick = false;
 	public static boolean Time = false;
 	public static int timerCount = 32;
 	public static boolean codeclear = false;
 	
+	 public game() {
+	        checkClick = false;
+	        Time = false;
+	        timerCount = 32;
+	        codeclear = false;
+//	        System.out.println("gameが実行されました");
+	    }
+	 
+	 public interface GameClearListener {
+	        void onGameClear();   // ゲームクリア時に呼ばれる
+	        void onGameOver();    // ゲームオーバー時に呼ばれる
+	    }
+	
 	public void stage1(GameClearListener listener) {
 		
-		
+//		System.out.println("stage1が実行されました");
 		
 		String[] Data = {
 				"AA","BB","CC","DD","EE","FF","GG","HH","II","JJ","KK","LL","MM","NN","OO","PP","QQ","RR","SS","TT","UU","VV","WW","XX",
@@ -181,6 +190,7 @@ public class game {
 						 title.setBounds(330,100,200,30);
 						 title.setFont(new Font("", Font.PLAIN, 20));
 						 
+						 frame.setVisible(false);
 						 
 						 listener.onGameOver();
 					 }
@@ -195,4 +205,12 @@ public class game {
 		frame.setResizable(false);
 		frame.setVisible(true);
 	}
+	
+	public void resetGame() {
+        checkClick = false;
+        Time = false;
+        timerCount = 32;
+        codeclear = false;
+    }
+	
 }
