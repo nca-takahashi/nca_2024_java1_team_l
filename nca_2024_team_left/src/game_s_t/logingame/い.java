@@ -38,7 +38,7 @@ public class い {
 		
 		button.addActionListener(e -> {
 			try {
-				  File pdfFile = new File("//172.20.34.11/students/_JAVA高橋/HTML/java調査書類 1つ目.pdf");
+				  File pdfFile = new File("C:/temp/java/java調査書類 1つ目.pdf");
 				  if (pdfFile.exists()) {
                       
                       Desktop desktop = Desktop.getDesktop();
@@ -93,7 +93,7 @@ public class い {
 			
 			button4.addActionListener(e1 -> {
 				try {
-					 File htmlFile = new File("//172.20.34.11/students/_JAVA高橋/HTML/webサイト.html");
+					 File htmlFile = new File("C:/temp/java/webサイト.html");
 					
 					if (htmlFile.exists()) {
 					    Desktop.getDesktop().browse(htmlFile.toURI());
@@ -112,7 +112,7 @@ public class い {
                      // 正解の場合
                 	 try {
                 		    
-                		    File videoFile = new File("//172.20.34.11/students/_JAVA高橋/HTML/java ending.mp4");
+                		    File videoFile = new File("C:/temp/java/java ending.mp4");
                 		    
                 		    
                 		    if (videoFile.exists()) {

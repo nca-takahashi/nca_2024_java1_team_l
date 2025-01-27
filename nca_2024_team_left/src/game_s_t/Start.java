@@ -106,7 +106,7 @@ public class Start {
 	     instance.no1();
 		
 		
-		File soundFile = new File("C:\\Users\\cre1\\git\\nca_2024_java1_team_l\\nca_2024_team_left\\src\\数字当て\\i_5min.wav");
+		File soundFile = new File("C:/temp/java/i_5min.wav");
 		
 		try {
 			// オーディオファイルを読み込む
