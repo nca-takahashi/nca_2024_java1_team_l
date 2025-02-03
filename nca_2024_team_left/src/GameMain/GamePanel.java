@@ -17,10 +17,16 @@ import java.awt.event.MouseEvent;
 // 配列リストを扱うためのクラスをインポート
 import java.util.ArrayList;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 // パネルを扱うためのクラスをインポート
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 // タイマーを扱うためのクラスをインポート
 import javax.swing.Timer;
+
+import game_s_t.Start;
 
 /**
  * ゲームのメインパネルを表すクラス。
@@ -48,7 +54,7 @@ public class GamePanel extends JPanel implements ActionListener {
     private int timeLeft = 30; 
     // ゲームが一時停止しているかどうかを管理
     private boolean gamePaused = false; 
-
+    private int blinkCount = 0;
     /**
      * GamePanelのコンストラクタ。
      * ゲームの初期設定を行います。
@@ -58,8 +64,23 @@ public class GamePanel extends JPanel implements ActionListener {
         this.viruses = new ArrayList<>();
         // ゲームの更新タイマーを20ミリ秒ごとに設定
         this.gameTimer = new Timer(20, this); 
+     // 点滅回数を制御するカウント変数を追加
+       
+
         // ゲームオーバー点滅タイマーを500ミリ秒ごとに設定
-        this.blinkTimer = new Timer(500, e -> toggleGameOver()); 
+        this.blinkTimer = new Timer(500, e -> {
+            toggleGameOver(); // 点滅の切り替え
+            blinkCount++; // 点滅回数を増加
+
+            // 一定回数（例: 6回）点滅したら停止
+            if (blinkCount >= 6) {
+            	 blinkTimer.stop(); // 点滅タイマーを停止s
+            	 showGameOverWindow();
+                blinkCount = 0; // カウントをリセット
+            }
+
+            repaint(); // 再描画を強制
+        });
         // 1秒ごとに残り時間を更新するタイマーを設定
         this.countdownTimer = new Timer(1000, e -> updateTime()); 
 
@@ -204,30 +225,147 @@ public class GamePanel extends JPanel implements ActionListener {
      */
     private void checkGameOver() {
         // 30秒経過後、ライフが0ならゲームオーバー、それ以外はクリア
-        if (timeLeft == 0) {
-            if (playerLife <= 0) {
-                showGameOver = true; // ゲームオーバー表示を有効にする
+        if ( playerLife == 0) {
+ 
+                showGameOver = true; // ゲームオーバー表示を有効にす
+               
                 countdownTimer.stop(); // カウントダウンタイマーを停止
                 gameTimer.stop(); // ゲームのタイマーも停止
                 gamePaused = true; // ゲーム停止状態にする
-            } else {
-                showClear = true; // クリア表示を有効にする
+            } else if (timeLeft == 0 && playerLife >= 0){
+                showClear = true; 
+                showClearWindow();  // クリア表示を有効にする
                 countdownTimer.stop(); // カウントダウンタイマーを停止
                 gameTimer.stop(); // ゲームのタイマーも停止
                 gamePaused = true; // ゲーム停止状態にする
             }
             repaint(); // 画面の再描画を強制
         }
+
+    
+    
+	private void showGameOverWindow() {
+
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+            	
+                // ゲームオーバーウィンドウの作成
+                JFrame frame = new JFrame("ゲームオーバー");
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // ウィンドウを閉じたら終了
+                frame.setSize(800, 600);  // ウィンドウのサイズ
+                frame.setLocationRelativeTo(null);  // 画面中央に表示
+
+                // レイアウトをnullに設定
+                frame.setLayout(null);
+
+                // ラベルを作成し、テキストを設定
+                JLabel label = new JLabel("ゲームオーバー");
+                label.setBounds(200, 100, 400, 100);
+                label.setFont(new Font("MS ゴシック", Font.BOLD, 50)); // フォント設定
+                label.setForeground(Color.GREEN);  // 文字色を緑に設定
+
+                // ラベルをフレームに追加
+                frame.add(label);
+
+                // ボタンを作成して設定
+                JButton btn = new JButton("RESTART");
+                btn.setFont(new Font("Arial", Font.PLAIN, 50));
+                btn.setBounds(180, 350, 400, 80);
+                btn.setForeground(Color.BLUE);
+                btn.setBackground(Color.WHITE);
+                
+                // ボタンのアクションリスナーを追加
+                btn.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                    	
+                        startGame();  // 新しいゲームを開始
+                        frame.dispose();  // ゲームオーバーウィンドウを閉じる
+                    }
+                });
+
+                // ボタンをフレームに追加
+                frame.add(btn);
+
+                // フレームの背景色を設定
+                frame.getContentPane().setBackground(Color.BLACK);
+
+                // ウィンドウを表示
+                frame.setVisible(true);
+            }
+        });
     }
 
+
+	private void showClearWindow() {
+		
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+            	 
+                // ゲームクリアウィンドウの作成
+                JFrame frame = new JFrame("ゲームクリア");
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // ウィンドウを閉じたら終了
+                frame.setSize(800, 600);  // ウィンドウのサイズ
+                frame.setLocationRelativeTo(null);  // 画面中央に表示
+
+                // レイアウトをnullに設定
+                frame.setLayout(null);
+
+                // ラベルを作成し、テキストを設定
+                JLabel label = new JLabel("ゲームクリア!");
+                label.setBounds(200, 100, 400, 100);
+                label.setFont(new Font("MS ゴシック", Font.BOLD, 50)); // フォント設定
+                label.setForeground(Color.GREEN);  // 文字色を緑に設定
+
+                // ラベルをフレームに追加
+                frame.add(label);
+                
+
+                // ボタンを作成して設定
+                JButton btn = new JButton("START");
+                btn.setFont(new Font("Arial", Font.PLAIN, 50));
+                btn.setBounds(280, 350, 250, 80);
+                btn.setForeground(Color.BLUE);
+                btn.setBackground(Color.WHITE);
+
+                btn.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                        // ゲーム開始処理（新しいゲームを開始）
+                        // まず、現在のゲームウィンドウを閉じる
+                        frame.dispose(); 
+                        // ゲームクリアウィンドウを閉じる
+
+                        // 次のゲームに移動
+                        
+                        Start.main(new String[]{}); // `Start`クラスの`main`メソッドを呼び出す
+                    }
+                });
+
+                // ボタンをフレームに追加
+                frame.add(btn);
+
+                // フレームの背景色を設定
+                frame.getContentPane().setBackground(Color.BLACK);
+
+                // ウィンドウを表示
+                frame.setVisible(true);
+            }
+        });
+    }
+	
+	
     /**
      * ゲームオーバー表示を切り替えるメソッド。
      * 表示をトグルし、再描画を行います。
      */
-    private void toggleGameOver() {
-        showGameOver = !showGameOver;
-        repaint(); // 再描画
-    }
+	private void toggleGameOver() {
+	    showGameOver = !showGameOver;
+	   repaint();
+	}
 
     /**
      * ウイルスの位置が他のウイルスと重なっているか確認するメソッド。
@@ -261,5 +399,8 @@ public class GamePanel extends JPanel implements ActionListener {
                 break; // 1つのウイルスを削除したらループを終了
             }
         }
-    }
+    } 
+    
+ 
+    
 }

@@ -260,7 +260,7 @@ public class GamePanel extends JPanel implements ActionListener {
                 frame.setLayout(null);
 
                 // ラベルを作成し、テキストを設定
-                JLabel label = new JLabel("ゲームオーバー…");
+                JLabel label = new JLabel("ゲームオーバー");
                 label.setBounds(200, 100, 400, 100);
                 label.setFont(new Font("MS ゴシック", Font.BOLD, 50)); // フォント設定
                 label.setForeground(Color.GREEN);  // 文字色を緑に設定

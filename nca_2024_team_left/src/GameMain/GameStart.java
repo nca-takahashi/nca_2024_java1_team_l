@@ -88,7 +88,7 @@ public class GameStart {
 						frame.setVisible(false);
 						try {
 							// 一時停止（実際には1ミリ秒）
-							Thread.sleep(50000);
+							Thread.sleep(1000);
 							// 新しいJFrameを作成
 							JFrame frame = new JFrame("ウイルスバスター");
 							// ウィンドウのサイズを設定
