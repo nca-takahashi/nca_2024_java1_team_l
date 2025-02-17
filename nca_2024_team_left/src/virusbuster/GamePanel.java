@@ -26,8 +26,6 @@ import javax.swing.SwingUtilities;
 // タイマーを扱うためのクラスをインポート
 import javax.swing.Timer;
 
-import game_s_t.Start;
-
 /**
  * ゲームのメインパネルを表すクラス。
  * ゲームのロジックと描画を管理します。
@@ -78,6 +76,7 @@ public class GamePanel extends JPanel implements ActionListener {
             	 showGameOverWindow();
                 blinkCount = 0; // カウントをリセット
             }
+            
 
             repaint(); // 再描画を強制
         });
@@ -336,12 +335,12 @@ public class GamePanel extends JPanel implements ActionListener {
 
                         // ゲーム開始処理（新しいゲームを開始）
                         // まず、現在のゲームウィンドウを閉じる
-                        frame.dispose(); 
+//                        frame.dispose(); 
                         // ゲームクリアウィンドウを閉じる
 
                         // 次のゲームに移動
-                        
-                        Start.main(new String[]{}); // `Start`クラスの`main`メソッドを呼び出す
+                        showClear = true;
+//                        Start.main(new String[]{}); // `Start`クラスの`main`メソッドを呼び出す
                     }
                 });
 
