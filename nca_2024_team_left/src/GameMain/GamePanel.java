@@ -26,8 +26,6 @@ import javax.swing.SwingUtilities;
 // タイマーを扱うためのクラスをインポート
 import javax.swing.Timer;
 
-import game_s_t.Start;
-
 /**
  * ゲームのメインパネルを表すクラス。
  * ゲームのロジックと描画を管理します。
@@ -203,6 +201,10 @@ public class GamePanel extends JPanel implements ActionListener {
             g.setColor(Color.GREEN);
             g.setFont(new Font("MS ゴシック", Font.BOLD, 50)); // MS ゴシックに変更
             g.drawString("クリア!", getWidth() / 2 - 100, getHeight() / 2);
+            JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            if (parentFrame != null) {
+                parentFrame.dispose();  // ゲームウィンドウを閉じる
+            }
         }
     }
 
@@ -238,6 +240,8 @@ public class GamePanel extends JPanel implements ActionListener {
                 countdownTimer.stop(); // カウントダウンタイマーを停止
                 gameTimer.stop(); // ゲームのタイマーも停止
                 gamePaused = true; // ゲーム停止状態にする
+              
+              
             }
             repaint(); // 画面の再描画を強制
         }
@@ -324,7 +328,7 @@ public class GamePanel extends JPanel implements ActionListener {
                 
 
                 // ボタンを作成して設定
-                JButton btn = new JButton("START");
+                JButton btn = new JButton("START!");
                 btn.setFont(new Font("Arial", Font.PLAIN, 50));
                 btn.setBounds(280, 350, 250, 80);
                 btn.setForeground(Color.BLUE);
@@ -338,12 +342,11 @@ public class GamePanel extends JPanel implements ActionListener {
                         // まず、現在のゲームウィンドウを閉じる
                         frame.dispose(); 
                         // ゲームクリアウィンドウを閉じる
-
-                        // 次のゲームに移動
                         
-                        Start.main(new String[]{}); // `Start`クラスの`main`メソッドを呼び出す
                     }
-                });
+                      
+       	});
+                
 
                 // ボタンをフレームに追加
                 frame.add(btn);
@@ -352,7 +355,7 @@ public class GamePanel extends JPanel implements ActionListener {
                 frame.getContentPane().setBackground(Color.BLACK);
 
                 // ウィンドウを表示
-                frame.setVisible(true);
+                frame.setVisible(false);
             }
         });
     }
