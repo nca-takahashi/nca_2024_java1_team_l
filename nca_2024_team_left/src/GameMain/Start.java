@@ -23,7 +23,7 @@ public class Start {
     private static boolean codeclear = false;
     
         public static void main(String[] args) {
-            // GameStart クラスを使う
+/*            // GameStart クラスを使う
         	
             GameStart.main(args);  // GameStart の main メソッドを呼び出す
         GameStart gameInstance1 = new GameStart();
@@ -32,7 +32,7 @@ public class Start {
         }catch(InterruptedException e) {
         	e.printStackTrace();
         }
-        
+ */       
     
 
    

@@ -77,7 +77,6 @@ public class い {
 		});
 		
 		button2.addActionListener(e ->{
-			frame.dispose();
 			JFrame frame2 = new JFrame("Hack2");
 			frame2.setLayout(null);
 			JLabel label2 = new JLabel("パスワード:");

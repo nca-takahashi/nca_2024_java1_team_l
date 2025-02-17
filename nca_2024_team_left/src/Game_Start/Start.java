@@ -28,6 +28,7 @@ public class Start {
 		
 		
 		
+		
 		//フラグ回収までループ
 		while (!codeclear) {
             try {

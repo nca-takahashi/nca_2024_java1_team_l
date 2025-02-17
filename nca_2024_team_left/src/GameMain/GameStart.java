@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import game_s_t.Start;
 /**
  * ゲームを開始するためのクラス。
  * ウィンドウを表示し、スタートボタンを押すと動画を再生し、その後ゲームを開始します。
@@ -24,6 +25,8 @@ public class GameStart {
 	 * 
 	 * @param args コマンドライン引数
 	 */
+	private static boolean showClear = false;
+	
 	public static void main(String[] args) {
 
 		// 新しいJFrameを作成
@@ -105,6 +108,7 @@ public class GameStart {
 							frame.setVisible(true);
 							// ゲームを開始
 							gamePanel.startGame();
+							System.out.println("virusbuster1は" + showClear);
 						} catch (InterruptedException e1) {
 							// 例外が発生した場合のスタックトレースを出力
 							e1.printStackTrace();
@@ -121,5 +125,28 @@ public class GameStart {
 				}
 			}
 		});
+		
+		System.out.println("virusbuster2は" + showClear);
+		
+		while (!showClear) {
+            try {
+                // フラグがtrueになるまでスリープ（待機）する
+                Thread.sleep(1000); // 1秒待機
+                System.out.println("一秒");
+                System.out.println("virusbuster秒は" + showClear);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+		
+		try {
+            Thread.sleep(1000);  // 2秒待機
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+		
+		System.out.println("virusbuster4は" + showClear);
+		frame.setVisible(false);
+		Start.main(new String[]{}); // `Start`クラスの`main`メソッドを呼び出す
 	}
 }
