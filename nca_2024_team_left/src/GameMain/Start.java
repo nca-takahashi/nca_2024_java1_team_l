@@ -21,8 +21,21 @@ import game_s_t.logingame.い;
 public class Start {
 
     private static boolean codeclear = false;
+    
+        public static void main(String[] args) {
+            // GameStart クラスを使う
+        	
+            GameStart.main(args);  // GameStart の main メソッドを呼び出す
+        GameStart gameInstance1 = new GameStart();
+        try {
+        	Thread.sleep(40000);
+        }catch(InterruptedException e) {
+        	e.printStackTrace();
+        }
+        
+    
 
-    public static void main(String[] args) {
+   
 
         // 2番目のゲーム
         game gameInstance = new game();
