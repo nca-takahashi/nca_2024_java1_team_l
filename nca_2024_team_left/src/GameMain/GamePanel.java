@@ -30,8 +30,9 @@ import javax.swing.Timer;
  * ゲームのメインパネルを表すクラス。
  * ゲームのロジックと描画を管理します。
  */
-public class GamePanel extends JPanel implements ActionListener {
 
+public class GamePanel extends JPanel implements ActionListener {
+	
     // プレイヤーのライフを管理
     private int playerLife = 3; 
     // ウイルスのリストを保持
@@ -101,6 +102,7 @@ public class GamePanel extends JPanel implements ActionListener {
      * ゲームを開始するメソッド。
      * タイマーを開始し、ゲームの状態を初期化します。
      */
+    
     public void startGame() {
         // ゲームのタイマーを開始
         gameTimer.start(); 
@@ -201,10 +203,6 @@ public class GamePanel extends JPanel implements ActionListener {
             g.setColor(Color.GREEN);
             g.setFont(new Font("MS ゴシック", Font.BOLD, 50)); // MS ゴシックに変更
             g.drawString("クリア!", getWidth() / 2 - 100, getHeight() / 2);
-            JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-            if (parentFrame != null) {
-                parentFrame.dispose();  // ゲームウィンドウを閉じる
-            }
         }
     }
 
@@ -240,8 +238,6 @@ public class GamePanel extends JPanel implements ActionListener {
                 countdownTimer.stop(); // カウントダウンタイマーを停止
                 gameTimer.stop(); // ゲームのタイマーも停止
                 gamePaused = true; // ゲーム停止状態にする
-              
-              
             }
             repaint(); // 画面の再描画を強制
         }
@@ -300,11 +296,12 @@ public class GamePanel extends JPanel implements ActionListener {
             }
         });
     }
-
-
+	
 	private void showClearWindow() {
 		
+		
         SwingUtilities.invokeLater(new Runnable() {
+        	
             @Override
             public void run() {
             	 
@@ -328,26 +325,32 @@ public class GamePanel extends JPanel implements ActionListener {
                 
 
                 // ボタンを作成して設定
-                JButton btn = new JButton("START!");
+                JButton btn = new JButton("START");
                 btn.setFont(new Font("Arial", Font.PLAIN, 50));
                 btn.setBounds(280, 350, 250, 80);
                 btn.setForeground(Color.BLUE);
                 btn.setBackground(Color.WHITE);
 
                 btn.addActionListener(new ActionListener() {
-                    @Override
+                    public static boolean virusbusterclear = false;
+
+					@Override
                     public void actionPerformed(ActionEvent e) {
 
                         // ゲーム開始処理（新しいゲームを開始）
                         // まず、現在のゲームウィンドウを閉じる
-                        frame.dispose(); 
-                        // ゲームクリアウィンドウを閉じる
                         
-                    }
-                      
-       	});
-                
+                        // ゲームクリアウィンドウを閉じる
 
+                        // 次のゲームに移動
+                        virusbusterclear = true;
+                        System.out.println("virusbuster3は" + virusbusterclear);
+                        frame.dispose(); 
+//                        Start.main(new String[]{}); // `Start`クラスの`main`メソッドを呼び出す
+                    }
+                });
+
+                
                 // ボタンをフレームに追加
                 frame.add(btn);
 
@@ -355,7 +358,7 @@ public class GamePanel extends JPanel implements ActionListener {
                 frame.getContentPane().setBackground(Color.BLACK);
 
                 // ウィンドウを表示
-                frame.setVisible(false);
+                frame.setVisible(true);
             }
         });
     }
