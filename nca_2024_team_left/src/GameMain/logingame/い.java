@@ -14,8 +14,9 @@ import javax.swing.JTextField;
 
  
 public class い {
-
+	
 	public void no1() {
+		
 		
 		JFrame frame = new JFrame("Hack");
 		frame.setSize(600,500);

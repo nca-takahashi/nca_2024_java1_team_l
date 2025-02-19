@@ -118,7 +118,7 @@ public class Start {
     }
 
     // 音声再生
-    private static void playAudio() {
+    public static void playAudio() {
         File soundFile = new File("C:/temp/java/i_5min.wav");
 
         try {

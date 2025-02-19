@@ -11,6 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 
+import GameMain.Start;
+import game_s_t.logingame.い;
 public class game {
 	public void tutorial() {
 		JFrame frame = new JFrame("説明");
@@ -179,11 +181,16 @@ public class game {
 					 	title.setBounds(330,100,200,30);
 					 	title.setFont(new Font("", Font.PLAIN, 20));
 					 	codeclear = true;
+					 
 					 	
-					 	frame.setVisible(false);
 					 	
-					 	listener.onGameClear();
-					 	
+					 	 い ex = new い();
+					        ex.no1();
+					        Start.playAudio();
+					           
+					        frame.setVisible(false);
+						      
+						        listener.onGameClear();
 					 }else if (Time) {
 						 ((Timer) e.getSource()).stop();
 						 title.setText("ゲームオーバー");
@@ -191,7 +198,7 @@ public class game {
 						 title.setFont(new Font("", Font.PLAIN, 20));
 						 
 						 frame.setVisible(false);
-						 
+		
 						 listener.onGameOver();
 					 }
 				 }
@@ -211,6 +218,8 @@ public class game {
         Time = false;
         timerCount = 32;
         codeclear = false;
+        
     }
 	
+    
 }

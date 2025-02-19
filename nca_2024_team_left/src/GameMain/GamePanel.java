@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Font;
 // グラフィックスを扱うためのクラスをインポート
 import java.awt.Graphics;
+import java.awt.Window;
 // アクションイベントを扱うためのクラスをインポート
 import java.awt.event.ActionEvent;
 // アクションリスナーを扱うためのクラスをインポート
@@ -25,6 +26,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 // タイマーを扱うためのクラスをインポート
 import javax.swing.Timer;
+
+import GameMain.codeawase.game;
+
 
 /**
  * ゲームのメインパネルを表すクラス。
@@ -203,6 +207,10 @@ public class GamePanel extends JPanel implements ActionListener {
             g.setColor(Color.GREEN);
             g.setFont(new Font("MS ゴシック", Font.BOLD, 50)); // MS ゴシックに変更
             g.drawString("クリア!", getWidth() / 2 - 100, getHeight() / 2);
+            Window window = SwingUtilities.getWindowAncestor(this);  // getWindowAncestor()を使用
+            if (window != null) {
+                window.dispose();  // ウィンドウを閉じる
+            }
         }
     }
 
@@ -237,7 +245,8 @@ public class GamePanel extends JPanel implements ActionListener {
                 showClearWindow();  // クリア表示を有効にする
                 countdownTimer.stop(); // カウントダウンタイマーを停止
                 gameTimer.stop(); // ゲームのタイマーも停止
-                gamePaused = true; // ゲーム停止状態にする
+                gamePaused = true; 
+               // ゲーム停止状態にする
             }
             repaint(); // 画面の再描画を強制
         }
@@ -332,7 +341,7 @@ public class GamePanel extends JPanel implements ActionListener {
                 btn.setBackground(Color.WHITE);
 
                 btn.addActionListener(new ActionListener() {
-                    public static boolean virusbusterclear = false;
+                  
 
 					@Override
                     public void actionPerformed(ActionEvent e) {
@@ -343,9 +352,18 @@ public class GamePanel extends JPanel implements ActionListener {
                         // ゲームクリアウィンドウを閉じる
 
                         // 次のゲームに移動
-                        virusbusterclear = true;
-                        System.out.println("virusbuster3は" + virusbusterclear);
-                        frame.dispose(); 
+                       
+						
+                        game pa = new game();
+                     // ウィンドウを閉じたときにプログラムを終了するように設定
+						frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						// ゲームパネルをフレームに追加
+						
+						// ウィンドウを表示
+						
+						// ゲームを開始
+						pa.stage1(null);
+						frame.dispose();
 //                        Start.main(new String[]{}); // `Start`クラスの`main`メソッドを呼び出す
                     }
                 });

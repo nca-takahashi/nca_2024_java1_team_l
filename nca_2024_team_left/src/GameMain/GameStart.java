@@ -108,7 +108,7 @@ public class GameStart {
 							frame.setVisible(true);
 							// ゲームを開始
 							gamePanel.startGame();
-							System.out.println("virusbuster1は" + showClear);
+							
 						} catch (InterruptedException e1) {
 							// 例外が発生した場合のスタックトレースを出力
 							e1.printStackTrace();

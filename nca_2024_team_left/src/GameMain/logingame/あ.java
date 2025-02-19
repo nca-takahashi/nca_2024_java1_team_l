@@ -20,10 +20,11 @@ public class あ {
         い instance = new い();
         instance.no1();
     
-    File soundFile = new File("C:/temp/java/i_5min.wav");
+   
 
 
     try {
+    	 File soundFile = new File("C:/temp/java/i_5min.wav");
         // オーディオファイルを読み込む
         AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
 
