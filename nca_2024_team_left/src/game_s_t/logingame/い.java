@@ -124,7 +124,7 @@ public class い {
                 	 try {
                 		    
                 		    File videoFile = new File("C:/temp/java/java ending.mp4");
-                		    
+                		    frame2.dispose();
                 		    
                 		    if (videoFile.exists()) {
                 		        
