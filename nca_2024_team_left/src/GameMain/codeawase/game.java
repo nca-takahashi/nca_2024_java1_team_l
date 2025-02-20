@@ -18,6 +18,7 @@ public class game {
 		frame.setLayout(new BorderLayout());
 		frame.add(new JLabel("テスト"), BorderLayout.CENTER);
 		frame.setSize(800, 600);
+		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		frame.setVisible(true);
 	}
@@ -62,6 +63,7 @@ public class game {
 		JFrame frame = new JFrame("ゲーム");
 		frame.setLayout(null);
 		frame.setSize(800, 600);
+		frame.setLocationRelativeTo(null);
 		
 		
 		//タイトル

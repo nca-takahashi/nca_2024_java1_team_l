@@ -20,8 +20,11 @@ public class い {
 		
 		JFrame frame = new JFrame("Hack");
 		frame.setSize(600,500);
+		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
 		frame.setLayout(null);
+		frame.setLocationRelativeTo(null);
 		JLabel label = new JLabel("ID:");
 		label.setBounds(80,130,380,40);
 		label.setFont(new Font("Arial",Font.PLAIN, 24));
@@ -63,7 +66,9 @@ public class い {
 				frame3.setLayout(null);
 				frame3.add(label3);
 				frame3.setSize(300,200);
+				frame3.setLocationRelativeTo(null);
 				frame3.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+				frame3.setLocationRelativeTo(null);
 				frame3.setVisible(true);
 				 
 			}else {
@@ -74,6 +79,7 @@ public class い {
 				frame3.add(label3);
 				frame3.setSize(300,200);
 				frame3.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+				frame3.setLocationRelativeTo(null);
 				frame3.setVisible(true);
 			}
 		});
@@ -81,7 +87,9 @@ public class い {
 		button2.addActionListener(e ->{
 			frame.dispose();
 			JFrame frame2 = new JFrame("Hack2");
+			frame2.setLocationRelativeTo(null);
 			frame2.setLayout(null);
+			frame2.setLocationRelativeTo(null);
 			JLabel label2 = new JLabel("パスワード:");
 			label2.setBounds(80,130,380,40);
 			JTextField textField2 = new JTextField();
@@ -150,6 +158,7 @@ public class い {
 			frame2.add(button5);
 			frame2.add(button6);
 			frame2.setSize(600, 500);
+			frame2.setLocationRelativeTo(null);
 			frame2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 			frame2.setVisible(true);
 		});
@@ -165,6 +174,7 @@ public class い {
 		frame.add(button3);
 		frame.setVisible(true);
 	}
+	
 	
 	
 	

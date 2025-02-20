@@ -37,6 +37,8 @@ import GameMain.codeawase.game;
 
 public class GamePanel extends JPanel implements ActionListener {
 	
+	private static boolean codeclear = false;
+	
     // プレイヤーのライフを管理
     private int playerLife = 3; 
     // ウイルスのリストを保持
@@ -377,6 +379,53 @@ public class GamePanel extends JPanel implements ActionListener {
 
                 // ウィンドウを表示
                 frame.setVisible(true);
+            }
+        });
+    }
+	
+	
+	public static void startGame(game gameInstance) {
+        gameInstance.stage1(new game.GameClearListener() {
+            @Override
+            public void onGameClear() {
+                // ゲームクリア時にフラグを更新
+                codeclear = true;
+            }
+
+            @Override
+            public void onGameOver() {
+                // ゲームオーバー時の処理
+                System.out.println("ゲームオーバー!");
+
+                // ゲームオーバー画面を表示
+                JFrame frame = new JFrame("ゲームオーバー!");
+                frame.setLayout(null);
+                frame.setSize(800, 600);
+                frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                frame.setResizable(false);
+                frame.setVisible(true);
+                
+                JLabel title = new JLabel("ゲームオーバー!");
+                title.setFont(new Font("", Font.PLAIN, 30));
+                title.setBounds(310,100,400,30);
+                frame.add(title);
+
+                // リセットボタン
+                JButton resetButton = new JButton("リセット");
+                resetButton.setBounds(310, 500, 200, 30);
+                frame.add(resetButton);
+
+                // ボタンのアクションリスナー
+                resetButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        // ボタンがクリックされた時の処理
+                        codeclear = false; // フラグをリセット
+                        gameInstance.resetGame();
+                        startGame(gameInstance); // ゲームを再スタート
+                        frame.setVisible(false); // ゲームオーバー画面を非表示にする
+                    }
+                });
             }
         });
     }
