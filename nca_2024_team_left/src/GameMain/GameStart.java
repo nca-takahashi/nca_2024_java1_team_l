@@ -91,7 +91,7 @@ public class GameStart {
 						frame.setVisible(false);
 						try {
 							// 一時停止（実際には1ミリ秒）
-							Thread.sleep(1000);
+							Thread.sleep(50000);
 							// 新しいJFrameを作成
 							JFrame frame = new JFrame("ウイルスバスター");
 							// ウィンドウのサイズを設定
@@ -132,8 +132,8 @@ public class GameStart {
             try {
                 // フラグがtrueになるまでスリープ（待機）する
                 Thread.sleep(1000); // 1秒待機
-                System.out.println("一秒");
-                System.out.println("virusbuster秒は" + showClear);
+//                System.out.println("一秒");
+//                System.out.println("virusbuster秒は" + showClear);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -145,7 +145,7 @@ public class GameStart {
             e.printStackTrace();
         }
 		
-		System.out.println("virusbuster4は" + showClear);
+//		System.out.println("virusbuster4は" + showClear);
 		frame.setVisible(false);
 		Start.main(new String[]{}); // `Start`クラスの`main`メソッドを呼び出す
 	}

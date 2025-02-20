@@ -11,7 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 
-import GameMain.Start;
 import game_s_t.logingame.い;
 public class game {
 	public void tutorial() {
@@ -186,7 +185,7 @@ public class game {
 					 	
 					 	 い ex = new い();
 					        ex.no1();
-					        Start.playAudio();
+//					        Start.playAudio();
 					           
 					        frame.setVisible(false);
 						      

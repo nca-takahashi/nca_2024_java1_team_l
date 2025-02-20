@@ -14,8 +14,9 @@ import javax.swing.JTextField;
 
  
 public class い {
-
+	
 	public void no1() {
+		
 		
 		JFrame frame = new JFrame("Hack");
 		frame.setSize(600,500);
@@ -64,6 +65,7 @@ public class い {
 				frame3.setSize(300,200);
 				frame3.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 				frame3.setVisible(true);
+				 
 			}else {
 				JFrame frame3 = new JFrame("不正解");
 				JLabel label3 = new JLabel("読み込み失敗");
@@ -77,6 +79,7 @@ public class い {
 		});
 		
 		button2.addActionListener(e ->{
+			frame.dispose();
 			JFrame frame2 = new JFrame("Hack2");
 			frame2.setLayout(null);
 			JLabel label2 = new JLabel("パスワード:");

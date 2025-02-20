@@ -17,8 +17,8 @@ public class あ {
         
         ex.no1();
         
-        い instance = new い();
-        instance.no1();
+      //  い instance = new い();
+       // instance.no1();
     
    
 
